@@ -7,6 +7,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ApiResource]
@@ -15,12 +16,15 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['category:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['category:read'])]
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Groups(['category:read'])]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
@@ -31,6 +35,7 @@ class Product
      * @var Collection<int, Ingredient>
      */
     #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'products')]
+    #[Groups(['category:read'])]
     private Collection $ingredients;
 
     public function __construct()
@@ -66,7 +71,7 @@ class Product
 
         return $this;
     }
-
+    
     public function getCategory(): ?Category
     {
         return $this->category;
