@@ -19,9 +19,10 @@ class AppFixtures extends Fixture
         CategoryFactory::createMany(5);
 
         // Crear 20 productos con categorías e ingredientes aleatorios
-        ProductFactory::createMany(20, function () {
+        ProductFactory::createMany(30, function () {
             return [
                 'ingredients' => IngredientFactory::randomRange(2, 5),
+                'category' => CategoryFactory::random(),
             ];
         });
     }
