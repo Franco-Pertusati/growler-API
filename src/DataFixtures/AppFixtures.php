@@ -2,7 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\DiningTable;
 use App\Factory\CategoryFactory;
+use App\Factory\DiningTableFactory;
 use App\Factory\ProductFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -15,10 +17,12 @@ class AppFixtures extends Fixture
         CategoryFactory::createMany(5);
 
         // Crear 20 productos con categorías e ingredientes aleatorios
-        ProductFactory::createMany(30, function () {
+        ProductFactory::createMany(60, function () {
             return [
                 'category' => CategoryFactory::random(),
             ];
         });
+
+        DiningTableFactory::createMany(12);
     }
 }
