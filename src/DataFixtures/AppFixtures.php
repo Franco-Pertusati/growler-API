@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\DiningTable;
+use App\Entity\DinigTable;
 use App\Factory\CategoryFactory;
-use App\Factory\DiningTableFactory;
+use App\Factory\DinigTableFactory;
 use App\Factory\ProductFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -23,6 +23,6 @@ class AppFixtures extends Fixture
             ];
         });
 
-        DiningTableFactory::createMany(12);
+        DinigTableFactory::createMany(12);
     }
 }

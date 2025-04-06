@@ -2,13 +2,13 @@
 
 namespace App\Factory;
 
-use App\Entity\DiningTable;
+use App\Entity\DinigTable;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends PersistentProxyObjectFactory<DiningTable>
+ * @extends PersistentProxyObjectFactory<DinigTable>
  */
-final class DiningTableFactory extends PersistentProxyObjectFactory
+final class DinigTableFactory extends PersistentProxyObjectFactory
 {
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
@@ -21,7 +21,7 @@ final class DiningTableFactory extends PersistentProxyObjectFactory
 
     public static function class(): string
     {
-        return DiningTable::class;
+        return DinigTable::class;
     }
 
     /**
@@ -31,11 +31,11 @@ final class DiningTableFactory extends PersistentProxyObjectFactory
      */
     protected function defaults(): array|callable
     {
-return [
+        return [
             'name' => self::faker()->word(),
             'position' => self::faker()->unique()->numberBetween(1, 40),
-            'state' => self::faker()->numberBetween(1, 3),
-            'isRound' => self::faker()->boolean(),
+            'state' => self::faker()->numberBetween(1, 1),
+            'round' => self::faker()->boolean(),
         ];
     }
 
@@ -45,7 +45,7 @@ return [
     protected function initialize(): static
     {
         return $this
-            // ->afterInstantiate(function(DiningTable $diningTable): void {})
+            // ->afterInstantiate(function(DinigTable $dinigTable): void {})
         ;
     }
 }

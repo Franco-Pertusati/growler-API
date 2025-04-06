@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\DiningTable;
+use App\Entity\DinigTable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<DinningTable>
+ * @extends ServiceEntityRepository<DinigTable>
  */
-class DiningTableRepository extends ServiceEntityRepository
+class DinigTableRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, DiningTable::class);
+        parent::__construct($registry, DinigTable::class);
     }
 
     //    /**
-    //     * @return DinningTable[] Returns an array of DinningTable objects
+    //     * @return DinigTable[] Returns an array of DinigTable objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class DiningTableRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?DinningTable
+    //    public function findOneBySomeField($value): ?DinigTable
     //    {
     //        return $this->createQueryBuilder('d')
     //            ->andWhere('d.exampleField = :val')
