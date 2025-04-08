@@ -21,7 +21,10 @@ use Doctrine\ORM\Mapping as ORM;
             inputFormats: ['json' => ['application/ld+json', 'application/json']], // Acepta ambos formatos
             outputFormats: ['json' => ['application/ld+json']]
         ),
-        new Put(),
+        new Put(
+            inputFormats: ['json' => ['application/ld+json', 'application/json']], // Acepta ambos formatos
+            outputFormats: ['json' => ['application/ld+json']]
+        ),
         new Patch(
             inputFormats: ['json' => ['application/ld+json', 'application/json']], // Acepta ambos formatos
             outputFormats: ['json' => ['application/ld+json']]
