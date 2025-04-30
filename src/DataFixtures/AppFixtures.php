@@ -23,7 +23,6 @@ class AppFixtures extends Fixture
         });
 
         DinigTableFactory::createMany(12);
-
         UserFactory::createMany(22);
     }
 }
