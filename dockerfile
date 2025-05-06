@@ -22,7 +22,7 @@ WORKDIR /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
 # Instala dependencias
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 # Ejecuta migraciones al iniciar
 CMD php bin/console doctrine:migrations:migrate --no-interaction && apache2-foreground
