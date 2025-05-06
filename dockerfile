@@ -1,9 +1,9 @@
-# Imagen base con PHP, Apache y extensiones necesarias
+# Usa PHP con Apache
 FROM php:8.2-apache
 
-# Instala extensiones requeridas por Symfony
+# Instala dependencias necesarias
 RUN apt-get update && apt-get install -y \
-    git unzip libicu-dev libpq-dev libzip-dev zip \
+    git unzip libicu-dev libzip-dev zip libonig-dev libxml2-dev \
     && docker-php-ext-install intl pdo pdo_mysql zip opcache
 
 # Habilita mod_rewrite para Symfony
@@ -12,17 +12,20 @@ RUN a2enmod rewrite
 # Instala Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copia el código fuente
-COPY . /var/www/html/
+# Copia el proyecto
+COPY . /var/www/html
 
-# Establece el directorio de trabajo
+# Establece directorio de trabajo
 WORKDIR /var/www/html
 
-# Asegura permisos adecuados
+# Asigna permisos adecuados
 RUN chown -R www-data:www-data /var/www/html
 
-# Instala dependencias Symfony
+# Instala dependencias
 RUN composer install --no-dev --optimize-autoloader
 
-# Expone el puerto usado por Apache
+# Ejecuta migraciones al iniciar
+CMD php bin/console doctrine:migrations:migrate --no-interaction && apache2-foreground
+
+# Exponer puerto Apache
 EXPOSE 80
